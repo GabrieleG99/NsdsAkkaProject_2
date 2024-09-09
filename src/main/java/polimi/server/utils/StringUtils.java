@@ -1,4 +1,4 @@
-package gabrielegiusti.polimi.server.utils;
+package polimi.server.utils;
 
 public class StringUtils {
 

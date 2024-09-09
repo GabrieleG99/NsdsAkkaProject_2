@@ -1,4 +1,4 @@
-package gabrielegiusti.polimi.server;
+package polimi.server;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -6,10 +6,10 @@ import akka.pattern.Patterns;
 import akka.util.Timeout;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import gabrielegiusti.polimi.server.actors.FileWriterActor;
-import gabrielegiusti.polimi.server.actors.StreamManager;
-import gabrielegiusti.polimi.server.messages.WatchMe;
-import gabrielegiusti.polimi.server.supervisors.StreamSupervisor;
+import polimi.server.actors.FileWriterActor;
+import polimi.server.actors.StreamManager;
+import polimi.server.messages.WatchMe;
+import polimi.server.supervisors.StreamSupervisor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.concurrent.Await;

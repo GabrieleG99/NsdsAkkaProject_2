@@ -1,11 +1,10 @@
-package gabrielegiusti.polimi.client;
+package polimi.client;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.actor.typed.Terminated;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import gabrielegiusti.polimi.server.messages.SensorData;
+import polimi.server.messages.SensorData;
 
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -16,7 +15,7 @@ public class Client {
     private static final int numThreads = 10;
 
     public static final int NORM_OP = 0;
-    public static final int FAULT_OP = 1;
+    public static final int FAULT_OPERATOR_OP = 3;
 
     public static void main(String[] args) {
 
@@ -39,9 +38,9 @@ public class Client {
                         exec.submit(() -> clientActor.tell(new SensorData("humidity", ran.nextDouble() * 100), ActorRef.noSender()));
                         exec.submit(() -> clientActor.tell(new SensorData("pressure", ran.nextDouble() * 100), ActorRef.noSender()));
                     } else {
-                        exec.submit(() -> clientActor.tell(new SensorData("temperature", ran.nextDouble() * 100, FAULT_OP), ActorRef.noSender()));
-                        exec.submit(() -> clientActor.tell(new SensorData("humidity", ran.nextDouble() * 100, FAULT_OP), ActorRef.noSender()));
-                        exec.submit(() -> clientActor.tell(new SensorData("pressure", ran.nextDouble() * 100, FAULT_OP), ActorRef.noSender()));
+                        exec.submit(() -> clientActor.tell(new SensorData("temperature", ran.nextDouble() * 100, FAULT_OPERATOR_OP), ActorRef.noSender()));
+                        exec.submit(() -> clientActor.tell(new SensorData("humidity", ran.nextDouble() * 100, FAULT_OPERATOR_OP), ActorRef.noSender()));
+                        exec.submit(() -> clientActor.tell(new SensorData("pressure", ran.nextDouble() * 100, FAULT_OPERATOR_OP), ActorRef.noSender()));
                     }
 
                 }

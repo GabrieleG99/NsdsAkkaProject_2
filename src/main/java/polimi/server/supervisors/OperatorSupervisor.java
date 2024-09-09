@@ -1,19 +1,16 @@
-package gabrielegiusti.polimi.server.supervisors;
+package polimi.server.supervisors;
 
 import akka.actor.*;
 import akka.japi.pf.DeciderBuilder;
 import com.typesafe.config.Config;
-import gabrielegiusti.polimi.server.actors.Operator;
-import gabrielegiusti.polimi.server.actors.TopicManager;
-import gabrielegiusti.polimi.server.messages.AskForActorMap;
+import polimi.server.actors.Operator;
+import polimi.server.messages.AskForActorMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import scala.sys.Prop;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class OperatorSupervisor extends AbstractActor implements Supervisor {
 

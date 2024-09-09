@@ -1,7 +1,7 @@
-package gabrielegiusti.polimi.server.utils;
+package polimi.server.utils;
 
 
-import gabrielegiusti.polimi.server.messages.SensorData;
+import polimi.server.messages.SensorData;
 
 public class SequenceNumberGenerator {
 

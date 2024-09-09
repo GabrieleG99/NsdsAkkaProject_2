@@ -1,4 +1,4 @@
-package gabrielegiusti.polimi.server.messages;
+package polimi.server.messages;
 
 import com.typesafe.config.Config;
 import lombok.Getter;

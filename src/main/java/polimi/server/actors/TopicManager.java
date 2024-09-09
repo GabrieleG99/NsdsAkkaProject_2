@@ -1,14 +1,15 @@
-package gabrielegiusti.polimi.server.actors;
+package polimi.server.actors;
 
 import akka.actor.*;
-import akka.actor.typed.Terminated;
 import akka.pattern.Patterns;
 import akka.util.Timeout;
 
 import com.typesafe.config.Config;
-import gabrielegiusti.polimi.server.messages.*;
-import gabrielegiusti.polimi.server.supervisors.OperatorSupervisor;
-import gabrielegiusti.polimi.server.utils.StringUtils;
+import polimi.server.messages.*;
+import polimi.server.messages.*;
+import polimi.server.messages.*;
+import polimi.server.supervisors.OperatorSupervisor;
+import polimi.server.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.concurrent.Await;
@@ -17,7 +18,6 @@ import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
 
 import java.util.*;
-import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -71,19 +71,23 @@ public class TopicManager extends AbstractActor {
         getContext().system().actorSelection("user/stream-writer").tell(aggregatedData, self());
     }
 
-    private void routeData(SensorData msg) {
+    private void routeData(SensorData msg) throws Exception {
         String keyPartition = msg.getKey();
-        if (!operatorList.isEmpty()) {
-            long sequenceNumber = msg.getSequenceNumber();
-            senderMap.put(sequenceNumber, sender()); // Track sender for retries
+        if (msg.getOp() == 0) {
+            if (!operatorList.isEmpty()) {
+                long sequenceNumber = msg.getSequenceNumber();
+                senderMap.put(sequenceNumber, sender()); // Track sender for retries
 
-            // Load balance using round-robin
-            int index = roundRobinCounter.getAndIncrement() % operatorList.size();
-            operatorList.get(index).tell(msg, self());
-        } else {
-            log.warn("{} Manager || No operator found for key partition: {}",
-                    StringUtils.capitalizeWords(msg.getKey()),
-                    keyPartition);
+                // Load balance using round-robin
+                int index = roundRobinCounter.getAndIncrement() % operatorList.size();
+                operatorList.get(index).tell(msg, self());
+            } else {
+                log.warn("{} Manager || No operator found for key partition: {}",
+                        StringUtils.capitalizeWords(msg.getKey()),
+                        keyPartition);
+            }
+        } else if (msg.getOp() == 2) {
+            throw new Exception("Stream Manager fault");
         }
     }
 

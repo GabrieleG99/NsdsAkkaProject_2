@@ -1,4 +1,4 @@
-package gabrielegiusti.polimi.server.messages;
+package polimi.server.messages;
 
 import akka.actor.ActorRef;
 import lombok.Getter;

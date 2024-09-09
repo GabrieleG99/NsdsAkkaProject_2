@@ -1,15 +1,16 @@
-package gabrielegiusti.polimi.server.actors;
+package polimi.server.actors;
 
 import akka.actor.*;
 import akka.japi.pf.ReceiveBuilder;
 import akka.pattern.Patterns;
 import akka.util.Timeout;
 import com.typesafe.config.Config;
-import gabrielegiusti.polimi.server.messages.*;
-import gabrielegiusti.polimi.server.supervisors.TopicSupervisor;
+import polimi.server.messages.*;
+import polimi.server.messages.*;
+import polimi.server.messages.*;
+import polimi.server.supervisors.TopicSupervisor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import scala.None;
 import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
@@ -17,7 +18,6 @@ import scala.concurrent.duration.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -64,8 +64,14 @@ public class StreamManager extends AbstractActor {
         sender().tell("Managers started", self());
     }
 
-    private void sendToTopicManager(SensorData message) {
-        topicManagerMap.get(message.getKey()).tell(message, self());
+    private void sendToTopicManager(SensorData message) throws Exception {
+
+        if (message.getOp() == 0) {
+            topicManagerMap.get(message.getKey()).tell(message, self());
+        } else if (message.getOp() == 1) {
+            throw new Exception("manager fault");
+        }
+
     }
 
     public static Props props() {

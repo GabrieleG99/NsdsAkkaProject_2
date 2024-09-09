@@ -1,11 +1,11 @@
-package gabrielegiusti.polimi.server.actors;
+package polimi.server.actors;
 
 import akka.actor.AbstractActor;
 import akka.actor.Props;
 import akka.actor.ReceiveTimeout;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import gabrielegiusti.polimi.server.messages.AggregatedData;
+import polimi.server.messages.AggregatedData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.concurrent.duration.Duration;

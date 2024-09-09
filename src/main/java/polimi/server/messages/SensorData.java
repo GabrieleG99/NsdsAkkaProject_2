@@ -1,9 +1,9 @@
-package gabrielegiusti.polimi.server.messages;
+package polimi.server.messages;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import gabrielegiusti.polimi.server.utils.SequenceNumberGenerator;
+import polimi.server.utils.SequenceNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +17,7 @@ public class SensorData {
 
 
     public SensorData( String key, Double value) {
-        this(key, value, 0,SequenceNumberGenerator.generateSequenceNumber());
+        this(key, value, 0, SequenceNumberGenerator.generateSequenceNumber());
     }
 
     public SensorData( String key, Double value, int op) {

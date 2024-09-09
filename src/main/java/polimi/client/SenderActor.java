@@ -1,10 +1,9 @@
-package gabrielegiusti.polimi.client;
+package polimi.client;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorSelection;
 import akka.actor.Props;
-import akka.japi.pf.ReceiveBuilder;
-import gabrielegiusti.polimi.server.messages.SensorData;
+import polimi.server.messages.SensorData;
 
 public class SenderActor extends AbstractActor {
 

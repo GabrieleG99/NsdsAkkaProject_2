@@ -1,4 +1,4 @@
-package gabrielegiusti.polimi.server.supervisors;
+package polimi.server.supervisors;
 
 import akka.actor.SupervisorStrategy;
 

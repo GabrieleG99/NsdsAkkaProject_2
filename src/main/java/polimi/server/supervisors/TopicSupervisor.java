@@ -1,13 +1,13 @@
-package gabrielegiusti.polimi.server.supervisors;
+package polimi.server.supervisors;
 
 import akka.actor.*;
 import akka.japi.pf.DeciderBuilder;
 import akka.pattern.Patterns;
 import akka.util.Timeout;
 
-import gabrielegiusti.polimi.server.actors.TopicManager;
-import gabrielegiusti.polimi.server.messages.AskForActorMap;
-import gabrielegiusti.polimi.server.messages.StartOperators;
+import polimi.server.actors.TopicManager;
+import polimi.server.messages.AskForActorMap;
+import polimi.server.messages.StartOperators;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.concurrent.Await;

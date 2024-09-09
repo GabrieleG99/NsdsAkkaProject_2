@@ -1,10 +1,10 @@
-package gabrielegiusti.polimi.server.actors;
+package polimi.server.actors;
 
-import gabrielegiusti.polimi.server.messages.AggregatedData;
-import gabrielegiusti.polimi.server.messages.DeliveryFailed;
-import gabrielegiusti.polimi.server.messages.SensorData;
-import gabrielegiusti.polimi.server.utils.SequenceNumberGenerator;
-import gabrielegiusti.polimi.server.utils.Window;
+import polimi.server.messages.AggregatedData;
+import polimi.server.messages.DeliveryFailed;
+import polimi.server.messages.SensorData;
+import polimi.server.utils.SequenceNumberGenerator;
+import polimi.server.utils.Window;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorSelection;
@@ -73,7 +73,7 @@ public class Operator extends AbstractActor {
             } catch (Exception e) {
                 log.error("Error processing data: {}", msg, e);
             }
-        } else {
+        } else if (msg.getOp() == 3){
             log.error("Operator fault!");
             throw new Exception("Operator Fault");
         }

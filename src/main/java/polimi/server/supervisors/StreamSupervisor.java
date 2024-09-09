@@ -1,4 +1,4 @@
-package gabrielegiusti.polimi.server.supervisors;
+package polimi.server.supervisors;
 
 import akka.actor.AbstractActor;
 import akka.actor.OneForOneStrategy;
@@ -6,10 +6,9 @@ import akka.actor.Props;
 import akka.actor.SupervisorStrategy;
 import akka.japi.pf.DeciderBuilder;
 
-import gabrielegiusti.polimi.server.actors.StreamManager;
+import polimi.server.actors.StreamManager;
 
 import java.time.Duration;
-import java.util.Map;
 
 public class StreamSupervisor extends AbstractActor implements Supervisor{
 
